@@ -1,1 +1,91 @@
+/* style.css - Мои кастомные стили для сайта */
 
+/* 1. Общие стили */
+:root {
+    --my-primary: #2c3e50;
+    --my-secondary: #3498db;
+    --my-accent: #2ecc71;
+}
+
+/* 2. Тестовый баннер для проверки */
+.site-status-banner {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: linear-gradient(90deg, var(--my-accent), var(--my-secondary));
+    color: white;
+    padding: 15px 25px;
+    border-radius: 10px;
+    font-weight: bold;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    z-index: 10000;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* 3. Улучшаем заголовки */
+h1, h2, h3 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* 4. Эффекты для кнопок */
+.btn-custom {
+    background: linear-gradient(135deg, var(--my-secondary), var(--my-primary));
+    border: none;
+    border-radius: 8px;
+    padding: 12px 30px;
+    color: white;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-custom:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(52, 152, 219, 0.4);
+}
+
+/* 5. Карточки с анимацией */
+.animated-card {
+    transition: all 0.4s ease;
+    border: 1px solid #e0e0e0;
+}
+
+.animated-card:hover {
+    border-color: var(--my-secondary);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* 6. Адаптивность */
+@media (max-width: 768px) {
+    .site-status-banner {
+        bottom: 10px;
+        right: 10px;
+        left: 10px;
+        text-align: center;
+        font-size: 14px;
+    }
+}
+
+/* 7. Стили для тестового блока */
+.test-success {
+    border-left: 5px solid var(--my-accent);
+    padding-left: 20px;
+    margin: 20px 0;
+    background-color: rgba(46, 204, 113, 0.1);
+    padding: 15px;
+    border-radius: 5px;
+}
+
+/* 8. Улучшаем читаемость текста */
+body {
+    line-height: 1.7;
+}
+
+p {
+    margin-bottom: 1.2rem;
+}
