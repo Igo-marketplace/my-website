@@ -245,6 +245,8 @@
                 <p class="lead mb-4">
                     Помогаю российскому бизнесу принимать решения на основе данных — с полной прозрачностью, 
                     безопасностью и соответствием ФЗ-152. Работаю онлайн по всей России. 20+ лет опыта.
+                    <br><br>
+                    <span class="badge bg-success fs-6">✅ Сайт работает! GitHub Pages активен.</span>
                 </p>
                 <div class="d-flex flex-wrap gap-3">
                     <a href="#contact" class="btn btn-primary btn-lg">
@@ -264,9 +266,11 @@
                         <h4 class="card-title mb-2">И.В. Миронов</h4>
                         <p class="text-muted mb-3">
                             <i class="fas fa-briefcase me-1"></i> Senior Data & Security Architect
+                            <span class="badge bg-success ms-2">✅ Online</span>
                         </p>
                         <p class="card-text small">
                             Эксперт в data-аналитике и ИБ. Создаю решения, которые можно объяснить за 30 секунд.
+                            <br><strong class="text-success">Сайт размещён на GitHub Pages</strong>
                         </p>
                     </div>
                 </div>
@@ -552,7 +556,7 @@
                         <h3 class="h4 mb-0">Бизнес-план SaaS</h3>
                         <span class="badge bg-info">Для инвесторов</span>
                     </div>
-                    <p><strong>Что:</strong> Готовый бизнес-план с финансовой моделью</p>
+                    <p><strong>Что:</strong> Готовый бизнес-план с финансовной моделью</p>
                     <p><strong>Объём:</strong> 45 страниц, 3 сценария</p>
                     <p><strong>Показатели:</strong> NPV 187 млн ₽, окупаемость 14 мес.</p>
                     <div class="mt-4">
@@ -785,6 +789,7 @@
                 </h5>
                 <p class="mb-0 small">
                     Прозрачная аналитика для бизнеса по всей России. Без black-box AI. Только объяснимые решения.
+                    <br><span class="text-success">✅ Хостинг: GitHub Pages | Домен: ваш-ник.github.io</span>
                 </p>
             </div>
             
@@ -806,5 +811,67 @@
     </div>
 </footer>
 
+<!-- Тестовый баннер -->
+<div class="site-status-banner">
+    <i class="fas fa-check-circle me-2"></i>✅ Сайт работает! CSS подключен
+</div>
+
 <!-- Bootstrap JS -->
-<script src="https://cdn
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Скрипты для анимаций -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Плавная прокрутка
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const targetId = this.getAttribute('href');
+            if(targetId !== '#') {
+                e.preventDefault();
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            }
+        });
+    });
+    
+    // Анимация статистики
+    const statNumbers = document.querySelectorAll('.stat-number');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const numberElement = entry.target;
+                const finalNumber = numberElement.textContent.replace('%', '');
+                
+                if (finalNumber.includes('-')) {
+                    // Если число диапазон (15-25%)
+                    numberElement.style.opacity = 1;
+                } else if (!isNaN(finalNumber)) {
+                    // Анимация счётчика для обычных чисел
+                    let current = 0;
+                    const increment = finalNumber / 100;
+                    const timer = setInterval(() => {
+                        current += increment;
+                        if (current >= finalNumber) {
+                            numberElement.textContent = finalNumber + (numberElement.textContent.includes('%') ? '%' : '');
+                            clearInterval(timer);
+                        } else {
+                            numberElement.textContent = Math.floor(current) + (numberElement.textContent.includes('%') ? '%' : '');
+                        }
+                    }, 20);
+                }
+                observer.unobserve(numberElement);
+            }
+        });
+    }, { threshold: 0.5 });
+    
+    statNumbers.forEach(number => observer.observe(number));
+});
+</script>
+
+</body>
+</html>
